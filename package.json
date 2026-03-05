@@ -1,7 +1,7 @@
 {
   "name": "@adametherzlab/fertigation-mix",
-  "version": "2.0.0",
-  "description": "Nutrient solution calculator for hydroponics and tissue culture — EC/pH targeting, media formulations, growth regulators",
+  "version": "3.0.0",
+  "description": "Complete tissue culture and hydroponics toolkit — beginner walkthrough, 10 SOPs, sterilization calculator, media formulations, growth regulators, EC/pH tools",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -42,7 +42,13 @@
     "plant-science",
     "ms-medium",
     "growth-regulators",
-    "ph-calculator"
+    "ph-calculator",
+    "micropropagation",
+    "sterilization",
+    "sop",
+    "walkthrough",
+    "beginner-guide",
+    "acclimatization"
   ],
   "author": {
     "name": "AdametherzLab",
