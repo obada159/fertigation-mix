@@ -1,7 +1,7 @@
 {
   "name": "@adametherzlab/fertigation-mix",
-  "version": "0.1.0",
-  "description": "Nutrient solution calculator for hydroponics — EC/pH targeting and dilution ratios",
+  "version": "2.0.0",
+  "description": "Nutrient solution calculator for hydroponics and tissue culture — EC/pH targeting, media formulations, growth regulators",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -37,7 +37,12 @@
     "hydroponics",
     "fertigation",
     "nutrients",
-    "agriculture"
+    "agriculture",
+    "tissue-culture",
+    "plant-science",
+    "ms-medium",
+    "growth-regulators",
+    "ph-calculator"
   ],
   "author": {
     "name": "AdametherzLab",
@@ -48,7 +53,7 @@
     "type": "git",
     "url": "https://github.com/AdametherzLab/fertigation-mix.git"
   },
-  "homepage": "https://github.com/AdametherzLab/fertigation-mix#readme",
+  "homepage": "https://che0md.tech/fertigation-mix",
   "bugs": {
     "url": "https://github.com/AdametherzLab/fertigation-mix/issues"
   },

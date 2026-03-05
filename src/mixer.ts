@@ -1,36 +1,5 @@
-import * as os from 'os';
-import * as path from 'path';
 import type { EC, MixResult, MixTarget, PH, StockSolution, CompatibilityResult, CalculatorConfig } from './types.js';
 import { getNutrientById } from './nutrients.js';
-
-interface NutrientData {
-  readonly ecPerGram: EC;
-  readonly n?: number;
-  readonly p?: number;
-  readonly k?: number;
-  readonly ca?: number;
-  readonly mg?: number;
-  readonly s?: number;
-  readonly incompatibleWith?: readonly string[];
-}
-
-const NUTRIENT_DB: Readonly<Record<string, NutrientData>> = {
-  'calcium-nitrate': {
-    ecPerGram: 0.74 as EC,
-    n: 11.9,
-    ca: 16.9,
-  },
-  'magnesium-sulfate': {
-    ecPerGram: 0.85 as EC,
-    mg: 9.9,
-    s: 13.0,
-  },
-  'single-superphosphate': {
-    ecPerGram: 0.5 as EC,
-    p: 7.2,
-    ca: 10.5,
-  },
-} as const;
 
 /**
  * Check chemical compatibility between multiple stock solutions.
@@ -45,11 +14,11 @@ export function checkCompatibility(stockSolutions: readonly StockSolution[]): Co
 
   for (const stock of stockSolutions) {
     for (const constituent of stock.constituents) {
-      const nutrient = NUTRIENT_DB[constituent.nutrientId];
+      const nutrient = getNutrientById(constituent.nutrientId);
       if (!nutrient) continue;
 
       for (const existingId of presentNutrients) {
-        const existing = NUTRIENT_DB[existingId];
+        const existing = getNutrientById(existingId);
         if (existing?.incompatibleWith?.includes(constituent.nutrientId) ||
             nutrient.incompatibleWith?.includes(existingId)) {
           incompatibilities.push(`${existingId} <-> ${constituent.nutrientId}`);
@@ -100,7 +69,7 @@ export function calculateMix(
   const stockContributions = stocks.map(stock => {
     let maxEc = 0;
     for (const constituent of stock.constituents) {
-      const nutrient = NUTRIENT_DB[constituent.nutrientId];
+      const nutrient = getNutrientById(constituent.nutrientId);
       if (!nutrient) {
         throw new Error(`Unknown nutrient: ${constituent.nutrientId}`);
       }
@@ -123,9 +92,10 @@ export function calculateMix(
     dilutionRatios[stock.id] = round(ratio);
 
     for (const constituent of stock.constituents) {
-      const nutrient = NUTRIENT_DB[constituent.nutrientId];
+      const nutrient = getNutrientById(constituent.nutrientId);
+      if (!nutrient) continue;
       const concentration = (constituent.gramsPerLiter * ratio) / stock.dilutionFactor;
-      
+
       finalConcentrations.n += (nutrient.n ?? 0) * concentration;
       finalConcentrations.p += (nutrient.p ?? 0) * concentration;
       finalConcentrations.k += (nutrient.k ?? 0) * concentration;

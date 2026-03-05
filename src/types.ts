@@ -1,5 +1,3 @@
-// REMOVED external import: import type { ReadonlyDeep } from "type-fest";
-
 /** Electrical conductivity in mS/cm with branded type safety */
 export type EC = number & { readonly __brand: "EC" };
 
@@ -23,6 +21,7 @@ export interface Nutrient {
   readonly ca?: Percentage;
   readonly mg?: Percentage;
   readonly s?: Percentage;
+  readonly fe?: Percentage;
   readonly ecPerGram: EC;
   readonly solubility?: number;
   readonly incompatibleWith?: ReadonlyArray<string>;
