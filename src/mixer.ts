@@ -60,10 +60,22 @@ export function calculateMix(
     throw new RangeError('EC target must be positive');
   }
 
+  // Check for duplicate stock IDs
+  const stockIds = new Set<string>();
+  for (const stock of stocks) {
+    if (stockIds.has(stock.id)) {
+      throw new Error(`Duplicate stock solution ID: ${stock.id}`);
+    }
+    stockIds.add(stock.id);
+  }
+
   // Validate stock solution properties
   stocks.forEach((stock) => {
     if (stock.dilutionFactor <= 0) {
       throw new RangeError(`Stock solution ${stock.id} has invalid dilution factor (must be >0)`);
+    }
+    if (stock.constituents.length === 0) {
+      throw new Error(`Stock solution ${stock.id} has no constituents`);
     }
     stock.constituents.forEach((constituent) => {
       if (constituent.gramsPerLiter <= 0) {
@@ -132,7 +144,7 @@ export function calculateMix(
     s: round(finalConcentrations.s),
   };
 
-  if (target.phTarget && (target.phTarget < 4 || target.phTarget > 9)) {
+  if (target.phTarget && (target.phTarget < 5.5 || target.phTarget > 6.5)) {
     warnings.push('Target pH outside recommended hydroponic range (5.5-6.5)');
   }
 
