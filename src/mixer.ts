@@ -200,29 +200,40 @@ export function calculateStockVolumes(
     throw new RangeError(`Total volume must be positive (received ${target.totalVolumeLiters})`);
   }
 
+  // Calculate dilution ratios using existing mix logic
   const mixResult = calculateMix(target, stocks, config);
-  const { roundingDecimals = 0 } = config;
-  const round = (value: number) => Number(value.toFixed(roundingDecimals));
-
+  
+  const { roundingDecimals = 3 } = config;
+  const round = (value: number): number => Number(value.toFixed(roundingDecimals));
+  
+  const totalVolumeMl = target.totalVolumeLiters * 1000;
   const stockVolumes: Record<string, number> = {};
   let totalStockVolume = 0;
 
+  // Calculate concentrated stock volumes from dilution ratios
   for (const stock of stocks) {
     const ratio = mixResult.dilutionRatios[stock.id];
-    const volumeLiters = ratio * target.totalVolumeLiters;
-    const volumeMl = volumeLiters * 1000;
-    const roundedVolume = round(volumeMl);
+    if (ratio === undefined) continue;
+    
+    // Working volume is the amount of this stock at working strength needed
+    const workingVolumeMl = ratio * totalVolumeMl;
+    
+    // Convert to concentrated stock volume based on dilution factor
+    // e.g., if dilutionFactor is 100, we need 1/100th of the working volume
+    const concentratedVolume = workingVolumeMl / stock.dilutionFactor;
+    const roundedVolume = round(concentratedVolume);
+    
     stockVolumes[stock.id] = roundedVolume;
     totalStockVolume += roundedVolume;
   }
 
-  const totalVolumeMl = target.totalVolumeLiters * 1000;
+  // Calculate water volume needed (remainder to reach total volume)
   const waterVolume = round(totalVolumeMl - totalStockVolume);
 
   return {
     ...mixResult,
     stockVolumes,
     waterVolume,
-    totalVolume: totalVolumeMl,
+    totalVolume: round(totalVolumeMl),
   };
 }
